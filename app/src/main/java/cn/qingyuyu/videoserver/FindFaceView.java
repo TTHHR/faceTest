@@ -1,5 +1,6 @@
 package cn.qingyuyu.videoserver;
 
+import android.R.color;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -8,7 +9,9 @@ import android.graphics.PixelFormat;
 import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Paint.Style;
 import android.media.FaceDetector;
+import android.media.FaceDetector.Face;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -55,14 +58,14 @@ public class FindFaceView extends SurfaceView implements SurfaceHolder.Callback 
             clipPaint
                     .setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             canvas.drawPaint(clipPaint);
-            canvas.drawColor(getResources().getColor(R.color.transparent));
+            canvas.drawColor(getResources().getColor(color.transparent));
             Paint paint = new Paint();
             paint.setAntiAlias(true);
             paint.setColor(Color.GREEN);
-            paint.setStyle(Paint.Style.STROKE);
+            paint.setStyle(Style.STROKE);
             paint.setStrokeWidth(5.0f);
             for (int i = 0; i < numberOfFaceDetected; i++) {
-                FaceDetector.Face face = faces[i];
+                Face face = faces[i];
                 PointF midPoint = new PointF();
                 // 获得两眼之间的中间点
                 face.getMidPoint(midPoint);
